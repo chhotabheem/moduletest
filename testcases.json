@@ -1,0 +1,19 @@
+{
+    "testcases": [
+        {
+            "name": "testcase 1",
+            "input": "2",
+            "expectedoutput": "2"
+        },
+        {
+            "name": "testcase 2",
+            "input": "3",
+            "expectedoutput": "9"
+        },
+        {
+            "name": "testcase 3",
+            "input": "3",
+            "expectedoutput": "16"
+        }
+    ]
+}

@@ -1,0 +1,25 @@
+#For Production code
+
+g++ -c -fpic Input.cpp
+g++ --shared -o libinput.so Input.o
+
+g++ -c -fpic Output.cpp
+g++ --shared -o liboutput.so Output.o
+
+g++ -c -fpic Platform.cpp
+g++ --shared -o libplatform.so Platform.o
+
+g++ -c -fpic BusLogic.cpp
+g++ --shared -o libbuslogic.so BusLogic.o
+
+g++ -L/home/siddu/demo -linput -lbuslogic -lplatform -loutput Client.cpp -o calc
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/siddu/demo/
+./calc
+
+
+----------------------------------------------------------------------------------------------------
+
+#For ModulesTest Code
+
+g++ -c -fpic PlatformStub.cpp
+g++ --shared -o libplatformstub.so PlatformStub.o
