@@ -1,8 +1,9 @@
 #include "Platform.h"
 #include "MesaageQueue.h"
 #include "json.hpp"
-#include <thread>
+
 #include <fstream>
+#include <string>
 using namespace prod;
 using namespace nlohmann;
 
@@ -21,9 +22,14 @@ bool prod::Platform::init()
         json j2 = it.value();
         for (auto &el : j2.items())
         {
+            stub::Message msg;
+            msg.m_testcase_name = el.value()["name"].get<std::string>();
+            msg.m_input = el.value()["input"].get<std::uint32_t>();
+            msg.m_expected_op = el.value()["expectedoutput"].get<std::uint64_t>();
+            stub::MsgQueue::get_instance().push(msg);
             std::cout << el.key() << " : " << el.value() << "\n";
-            std::cout<<el.value()["input"]<<std::endl;
+            std::cout << el.value()["input"] << std::endl;
         }
     }
-    return false;
+    return true;
 }

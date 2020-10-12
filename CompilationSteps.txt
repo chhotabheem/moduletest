@@ -23,3 +23,16 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/siddu/demo/
 
 g++ -c -fpic PlatformStub.cpp
 g++ --shared -o libplatformstub.so PlatformStub.o
+
+g++ -c -fpic InputStub.cpp
+g++ --shared -o libinputstub.so InputStub.o
+
+g++ -c -fpic OutputStub.cpp
+g++ --shared -o liboutputstub.so OutputStub.o
+
+g++ -c -fpic BusLogic.cpp
+g++ --shared -o libbuslogic.so BusLogic.o
+
+
+g++ -L/home/siddu/demo -linputstub -lbuslogic -lplatformstub -loutputstub Client.cpp -o calc
+./calc
